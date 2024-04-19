@@ -1,0 +1,22 @@
+{
+  "java.project.sourcePaths": ["src"],
+  "java.project.outputPath": "bin",
+  "java.project.referencedLibraries": {
+    "include": [
+      "lib/**/*.jar",
+      "/Users/P3053916/Downloads/javafx-sdk-22.0.1 2/lib/javafx.controls.jar",
+      "/Users/P3053916/Downloads/javafx-sdk-22.0.1 2/lib/javafx.fxml.jar",
+      "/Users/P3053916/Downloads/javafx-sdk-22.0.12/lib/javafx-swt.jar",
+      "/Users/P3053916/Downloads/javafx-sdk-22.0.12/lib/javafx.base.jar",
+      "/Users/P3053916/Downloads/javafx-sdk-22.0.12/lib/javafx.controls.jar",
+      "/Users/P3053916/Downloads/javafx-sdk-22.0.12/lib/javafx.fxml.jar",
+      "/Users/P3053916/Downloads/javafx-sdk-22.0.12/lib/javafx.graphics.jar",
+      "/Users/P3053916/Downloads/javafx-sdk-22.0.12/lib/javafx.media.jar",
+      "/Users/P3053916/Downloads/javafx-sdk-22.0.12/lib/javafx.swing.jar",
+      "/Users/P3053916/Downloads/javafx-sdk-22.0.12/lib/javafx.web.jar"
+    ],
+    "exclude": [
+      "/Users/P3053916/Downloads/javafx-sdk-22.0.1 2/lib/javafx-swt.jar"
+    ]
+  }
+}
