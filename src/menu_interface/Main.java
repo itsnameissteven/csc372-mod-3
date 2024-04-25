@@ -5,28 +5,16 @@ import java.io.PrintWriter;
 import java.util.Date;
 import java.util.Random;
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.Scene;
-import javafx.scene.control.MenuButton;
-import javafx.scene.control.MenuItem;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
-import javafx.scene.layout.Pane;
-import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.Label;
-import javafx.scene.control.Alert;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
+import javafx.event.*;
+import javafx.scene.control.*;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 
-// When a user selects option 1 the date and time should show in a printed text box
-// when a user selects option 2 the text box contents should be written to a text file named 'log.txt'
-// when a user selects option 3 the frame background changes to a random color hue of green
-// when a user selects option 4 the program exits.
-// style the application
 
 public class Main extends Application  {
   MenuItem showDate, save, changeBackground, exit;
@@ -35,36 +23,43 @@ public class Main extends Application  {
   TextField dateText;
   Label homeScreenLabel;
   HBox hbox;
-  GridPane gridPane;
+  BorderPane borderPane;
+  
   @Override
   public void start(Stage primaryStage) throws Exception {
-    gridPane = new GridPane();
-    Scene scene = new Scene(gridPane);
+    borderPane = new BorderPane();
 
+    
     // Menu Button
     showDate = new MenuItem("Show Date");
     save = new MenuItem("Save");
-    save.isDisable();
     changeBackground = new MenuItem("Change Background");
     exit = new MenuItem("Exit");
+
     // Menu Button Container
     menuButton = new MenuButton("Menu", null, showDate, save, changeBackground, exit);
     hbox = new HBox(menuButton);
-
+    hbox.setPadding(new Insets(15, 12, 15, 12));
+    hbox.setSpacing(10);
+    hbox.setStyle("-fx-background-color: #336699;");
+    
+    // Labels / txt
     homeScreenLabel = new Label("Select a menu option");
+    homeScreenLabel.setAlignment(Pos.CENTER);
     dateText = new TextField("");
-
-    // pane = new Pane();
-    gridPane.add(hbox, 0,0);
-    gridPane.add(homeScreenLabel, 0, 1);
-
+    dateText.setMaxWidth(250);
+    
+    borderPane.setTop(hbox);
+    borderPane.setCenter(homeScreenLabel);
+    Scene scene = new Scene(borderPane, 500, 300);
+    
     showDate.setOnAction(new EventHandler<ActionEvent>() {
       @Override
       public void handle(ActionEvent event) {
         Date date = new Date();
         dateText.setText(String.valueOf(date));
-        gridPane.getChildren().remove(homeScreenLabel);
-        gridPane.add(dateText, 0,1);
+        borderPane.getChildren().remove(homeScreenLabel);
+        borderPane.setCenter(dateText);
       }
     });
 
@@ -81,6 +76,8 @@ public class Main extends Application  {
           PrintWriter outFS = new PrintWriter(fileStream);
           outFS.println(dateText.getText());
           outFS.close();
+          Alert alert =  new Alert(AlertType.CONFIRMATION, "File saved");
+          alert.show();
         } catch (Exception e) {
           Alert errorAlert = new Alert(AlertType.ERROR, "Issue saving file, check path.");
           errorAlert.showAndWait();
@@ -96,7 +93,7 @@ public class Main extends Application  {
         int blue = new Random().nextInt(256);
         BackgroundFill backgroundColor = new BackgroundFill(Color.rgb(red, green, blue), null, null);
         Background background = new Background(backgroundColor);
-        gridPane.setBackground(background);
+        borderPane.setBackground(background);
       }
     });
 
@@ -106,8 +103,6 @@ public class Main extends Application  {
         primaryStage.close();
       }
     });
-
-
 
     primaryStage.setTitle("User Interface");
     primaryStage.setScene(scene);
