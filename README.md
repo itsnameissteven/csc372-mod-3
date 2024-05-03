@@ -14,4 +14,9 @@ This application is a demo using the JavaFx library and was build using javaFx-s
 
 ## Using the application
 
-As a user you can explore different interaction with the program using the menu bar.
+As a user, you can explore different interactions with the program using the menu bar.
+
+
+## Contributors
+
+- [Steven Mancine](https://github.com/itsnameissteven)
