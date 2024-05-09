@@ -25,6 +25,7 @@ public class Main extends Application  {
   HBox hbox;
   BorderPane borderPane;
   
+  // Instantiates / opens application window which is triggered by application.launch
   @Override
   public void start(Stage primaryStage) throws Exception {
     borderPane = new BorderPane();
@@ -86,7 +87,7 @@ public class Main extends Application  {
           Alert alert =  new Alert(AlertType.CONFIRMATION, "File saved");
           alert.show();
         } catch (Exception e) {
-          Alert errorAlert = new Alert(AlertType.ERROR, "Issue saving file, please check path.");
+          Alert errorAlert = new Alert(AlertType.ERROR, "Issue saving file, please ensure the file log.txt exists");
           errorAlert.showAndWait();
         }
       }
